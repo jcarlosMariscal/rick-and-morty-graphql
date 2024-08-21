@@ -1,11 +1,7 @@
 import { NavLink } from "react-router-dom";
 import { Search } from "../Search/Search";
-import { useContext } from "react";
-import { AppContext } from "../../context/AppContext";
 
 export const Header = () => {
-  const { handleSearchByName } = useContext(AppContext);
-  const searchCharacter = (name: string) => handleSearchByName(name);
   return (
     <div className="h-16 px-4 md:px-10 bg-sky-500 text-white p-4 flex justify-between items-center">
       <NavLink to="/">
@@ -14,7 +10,7 @@ export const Header = () => {
         </div>
       </NavLink>
       <div className="flex gap-2 items-center">
-        <Search searchCharacter={searchCharacter} />
+        <Search />
         <NavLink to="favorites" className="nav-link">
           Favoritos
         </NavLink>

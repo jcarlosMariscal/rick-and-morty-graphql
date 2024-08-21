@@ -5,7 +5,7 @@ const characteristic = cva("characteristic", {
   variants: {
     gender: {
       unknown: ["bg-gray-600 text-gray-100"],
-      Male: ["bg-emerald-600 text-emerald-100"],
+      Male: ["bg-green-600 text-green-100"],
       Female: ["bg-violet-600 text-violet-100"],
       Genderless: [
         "bg-gradient-to-r from-indigo-500 via-purple-500 to-pink-500 text-white",
@@ -32,7 +32,7 @@ const characteristic = cva("characteristic", {
   compoundVariants: [
     { gender: "unknown", status: "unknown", species: "unknown" },
   ],
-  defaultVariants: { gender: "unknown", status: "unknown", species: "unknown" },
+  // defaultVariants: { gender: "unknown", status: "unknown", species: "unknown" },
 });
 
 export interface Props

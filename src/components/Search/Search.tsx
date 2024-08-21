@@ -1,16 +1,13 @@
-import { FC, useEffect } from "react";
+import { useContext, useEffect } from "react";
 import { useDebounceValue } from "usehooks-ts";
+import { AppContext } from "../../context/AppContext";
 
-type Props = {
-  searchCharacter: (name: string) => void;
-};
-export const Search: FC<Props> = ({ searchCharacter }) => {
+export const Search = () => {
   const [debouncedValue, setValue] = useDebounceValue("", 500);
+  const { handleSearchByName } = useContext(AppContext);
 
   useEffect(() => {
-    if (debouncedValue) {
-      searchCharacter(debouncedValue);
-    }
+    handleSearchByName(debouncedValue);
   }, [debouncedValue]);
   return (
     <form className="w-full py-2">
