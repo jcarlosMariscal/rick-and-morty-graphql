@@ -9,7 +9,7 @@ type Props = {
 export const Character: FC<Props> = ({ character }) => {
   const { gender, status, species, type } = character;
   return (
-    <div className="bg-green-50 p-8 w-full md:w-3/5 rounded-lg flex gap-4 relative flex-col sm:flex-row">
+    <div className="shadow-xl shadow-gray-100/100 p-8 w-full md:w-3/5 rounded-lg flex gap-4 relative flex-col sm:flex-row">
       <div className="">
         <img
           src={character?.image}
@@ -23,10 +23,10 @@ export const Character: FC<Props> = ({ character }) => {
           <BtnFavorite character={character} />
         </div>
         <div className="flex gap-4 flex-wrap">
-          {gender && <Characteristic charac={gender}>{gender}</Characteristic>}
-          {status && <Characteristic charac={status}>{status}</Characteristic>}
+          {gender && <Characteristic gender={gender}>{gender}</Characteristic>}
+          {status && <Characteristic status={status}>{status}</Characteristic>}
           {species && (
-            <Characteristic charac={species}>{species}</Characteristic>
+            <Characteristic species={species}>{species}</Characteristic>
           )}
           {type && <Characteristic>{type}</Characteristic>}
         </div>

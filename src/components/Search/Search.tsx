@@ -1,10 +1,11 @@
-import { useContext, useEffect } from "react";
+import { useEffect } from "react";
 import { useDebounceValue } from "usehooks-ts";
-import { AppContext } from "../../context/AppContext";
+import { useAppStore } from "../../store/store";
 
 export const Search = () => {
   const [debouncedValue, setValue] = useDebounceValue("", 500);
-  const { handleSearchByName } = useContext(AppContext);
+  // const { handleSearchByName } = useContext(AppContext);
+  const { handleSearchByName } = useAppStore();
 
   useEffect(() => {
     handleSearchByName(debouncedValue);

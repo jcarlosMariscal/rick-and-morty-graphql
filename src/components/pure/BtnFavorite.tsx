@@ -1,14 +1,14 @@
-import React, { useContext, useEffect, useState } from "react";
+import React, { useEffect, useState } from "react";
 import { ICharacter } from "../../types/types";
-import { AppContext } from "../../context/AppContext";
 import { Button } from "./Button";
+import { useAppStore } from "../../store/store";
 
 type Props = {
   character: ICharacter;
 };
 
 export const BtnFavorite: React.FC<Props> = ({ character }) => {
-  const { addFavorite, favorites } = useContext(AppContext);
+  const { favorites, addFavorite, removeFavorite } = useAppStore();
   const [isFavorite, setIsFavorite] = useState<boolean>(
     favorites.some((fav) => fav.id === character?.id)
   );
@@ -21,13 +21,15 @@ export const BtnFavorite: React.FC<Props> = ({ character }) => {
       size="xs"
       intent="secondary"
       className={`flex items-center`}
-      onClick={() => addFavorite(character!)}
+      onClick={() =>
+        isFavorite ? removeFavorite(character!.id) : addFavorite(character!)
+      }
     >
       <svg
-        className={` size-5  ${
+        className={` size-6  ${
           isFavorite
             ? "fill-yellow-500 stroke-yellow-500"
-            : "stroke-yellow-500 fill-yellow-100"
+            : "stroke-yellow-300 fill-white hover:stroke-yellow-500 "
         } }`}
         stroke="currentColor"
         strokeWidth="2"

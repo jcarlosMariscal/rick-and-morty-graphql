@@ -1,12 +1,12 @@
 import { useQuery } from "@apollo/client";
-import { useContext, useEffect, useState } from "react";
+import { useEffect, useState } from "react";
 import { useIntersectionObserver } from "usehooks-ts";
 import { ICharacter, ICharactersData } from "../types/types";
 import GET_CHARACTERS from "../graphql/queries/getCharacters.query";
-import { AppContext } from "../context/AppContext";
+import { useAppStore } from "../store/store";
 
 export const useLayout = () => {
-  const { searchName } = useContext(AppContext);
+  const { searchName } = useAppStore();
   const [page, setPage] = useState<number>(1);
   const [characters, setCharacters] = useState<ICharacter[]>([]);
   const { error, data, fetchMore, loading } = useQuery<ICharactersData>(
@@ -29,7 +29,10 @@ export const useLayout = () => {
     }
   }, [data]);
   useEffect(() => {
-    setPage(1);
+    if (searchName) {
+      setCharacters([]);
+      setPage(1);
+    }
   }, [searchName]);
 
   useEffect(() => {

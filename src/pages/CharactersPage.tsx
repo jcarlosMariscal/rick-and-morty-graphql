@@ -15,13 +15,15 @@ export const CharactersPage = () => {
   return (
     <>
       <div className="p-8 sm:p-12">
-        <Characters characters={characters!} />
-        {characters!.length > 0 && (
-          <>
-            <span ref={ref}></span>
-            {loading && <Spinner />}
-          </>
-        )}
+        <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-4 gap-4">
+          <Characters characters={characters!} favorite />
+          {characters!.length > 0 && (
+            <>
+              <span ref={ref}></span>
+              {loading && <Spinner />}
+            </>
+          )}
+        </div>
       </div>
     </>
   );
