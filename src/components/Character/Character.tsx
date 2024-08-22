@@ -18,15 +18,15 @@ export const Character: FC<Props> = ({ character }) => {
         />
       </div>
       <div className="w-full">
-        <div className="my-4">
+        <div className="my-4 flex justify-between">
           <h2 className="text-lg font-bold">{character?.name}</h2>
           <BtnFavorite character={character} />
         </div>
         <div className="flex gap-4 flex-wrap">
-          {gender && <Characteristic gender={gender}>{gender}</Characteristic>}
-          {status && <Characteristic status={status}>{status}</Characteristic>}
+          {gender && <Characteristic charac={gender}>{gender}</Characteristic>}
+          {status && <Characteristic charac={status}>{status}</Characteristic>}
           {species && (
-            <Characteristic species={species}>{species}</Characteristic>
+            <Characteristic charac={species}>{species}</Characteristic>
           )}
           {type && <Characteristic>{type}</Characteristic>}
         </div>

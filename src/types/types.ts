@@ -30,3 +30,20 @@ export interface ICharactersData {
     results: ICharacter[];
   };
 }
+
+export type TCharacteristic =
+  | "unknown"
+  | "Male"
+  | "Female"
+  | "Genderless"
+  | "Alive"
+  | "Dead"
+  | "Human"
+  | "Alien"
+  | "Humanoid"
+  | "Poopybutthole"
+  | "Mythological Creature"
+  | "Animal"
+  | "Robot"
+  | "Cronenberg"
+  | "Disease";

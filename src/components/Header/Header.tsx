@@ -9,7 +9,7 @@ export const Header = () => {
           <span className="font-bold">RAM</span>
         </div>
       </NavLink>
-      <div className="flex gap-2 items-center">
+      <div className="flex gap-8 items-center">
         <Search />
         <NavLink to="favorites" className="nav-link">
           Favoritos

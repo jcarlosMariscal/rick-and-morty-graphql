@@ -7,33 +7,37 @@ import { AppContext } from "../context/AppContext";
 
 export const useLayout = () => {
   const { searchName } = useContext(AppContext);
-  const [characters, setCharacters] = useState<ICharacter[]>([]);
   const [page, setPage] = useState<number>(1);
-  const [loading, setLoading] = useState<boolean>(false);
-  const { error, data } = useQuery<ICharactersData>(GET_CHARACTERS, {
-    variables: { page: page, name: searchName },
-  });
+  const [characters, setCharacters] = useState<ICharacter[]>([]);
+  const { error, data, fetchMore, loading } = useQuery<ICharactersData>(
+    GET_CHARACTERS,
+    {
+      variables: { page: page, name: searchName },
+      notifyOnNetworkStatusChange: true,
+    }
+  );
   const { isIntersecting, ref } = useIntersectionObserver({
     threshold: 0.5,
   });
 
   useEffect(() => {
-    const results = data?.characters.results;
-    if (results) {
-      setCharacters((prev) => [...prev, ...results]);
+    if (data?.characters?.results) {
+      setCharacters((prevCharacters) => [
+        ...prevCharacters,
+        ...data.characters.results,
+      ]);
     }
   }, [data]);
-
   useEffect(() => {
-    setCharacters([]);
     setPage(1);
   }, [searchName]);
 
   useEffect(() => {
     if (isIntersecting && data?.characters?.info) {
-      setPage((prev) => prev + 1);
-      setLoading(page <= data.characters.info.pages ? true : false);
+      fetchMore({
+        variables: { page: page + 1 },
+      }).then(() => setPage(page + 1));
     }
-  }, [isIntersecting, data, page]);
+  }, [isIntersecting, data, fetchMore, page]);
   return { ref, error, characters, loading };
 };

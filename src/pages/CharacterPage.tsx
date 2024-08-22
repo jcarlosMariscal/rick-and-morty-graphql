@@ -12,7 +12,6 @@ export const CharacterPage = () => {
 
   if (loading) return <Spinner />;
   if (error) return <p>Error : {error.message}</p>;
-  console.log(data);
   return (
     <div className="p-4 sm:p-8 w-full flex justify-normal sm:justify-center">
       <Character character={data.character} />

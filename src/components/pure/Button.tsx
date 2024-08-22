@@ -5,19 +5,27 @@ const button = cva("button", {
   variants: {
     intent: {
       primary: [
-        "bg-blue-500",
-        "text-white",
-        "border-transparent",
-        "hover:bg-blue-600",
+        "border border-sky-300",
+        "text-sky-600",
+        // "bg-sky-100",
+        "hover:bg-sky-200 hover:text-sky-700",
       ],
       secondary: [
-        "bg-white",
-        "text-gray-800",
-        "border-gray-400",
-        "hover:bg-gray-100",
+        "border border-yellow-300",
+        "text-yellow-600",
+        // "border-gray-400",
+        // "hover:bg-yellow-300",
       ],
     },
     size: {
+      xs: [
+        "size-8",
+        "text-xl",
+        "rounded-full",
+        "flex place-content-center",
+        "font-bold",
+        "",
+      ],
       small: ["text-sm", "py-1", "px-2"],
       medium: ["text-base", "py-2", "px-4"],
     },
@@ -38,5 +46,14 @@ export const Button: React.FC<ButtonProps> = ({
   size,
   ...props
 }) => {
-  return <button className={button({ intent, size, className })} {...props} />;
+  return (
+    <button
+      className={`cursor-pointer ${button({
+        intent,
+        size,
+        className,
+      })}`}
+      {...props}
+    ></button>
+  );
 };
