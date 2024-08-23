@@ -3,7 +3,7 @@ import { useDebounceValue } from "usehooks-ts";
 import { useAppStore } from "../../store/store";
 
 export const Search = () => {
-  const [debouncedValue, setValue] = useDebounceValue("", 500);
+  const [debouncedValue, setValue] = useDebounceValue("", 300);
   // const { handleSearchByName } = useContext(AppContext);
   const { handleSearchByName } = useAppStore();
 

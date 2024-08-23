@@ -12,7 +12,7 @@ type Props = {
 export const Card: React.FC<Props> = ({ character, btnFavorite = false }) => {
   const { name, image, id, gender, status } = character;
   return (
-    <div className="p-2 rounded-lg relative transition shadow-xl border border-transparent hover:border-sky-50 shadow-gray-100/100 hover:scale-105 hover:z-10 flex gap-2 w-full">
+    <div className="p-2 rounded-lg relative transition shadow-xl bg-white border border-transparent hover:border-sky-50 shadow-gray-100/100 hover:scale-105 hover:z-10 flex gap-2 w-full">
       <img src={image} alt={name} className="rounded-xl w-28 min-w-28" />
       <div className="w-full">
         <div className="mb-2">

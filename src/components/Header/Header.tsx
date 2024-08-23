@@ -1,12 +1,11 @@
 import { NavLink } from "react-router-dom";
 import { Search } from "../Search/Search";
-import { useState } from "react";
-import { Button } from "../pure/Button";
+// import { useState } from "react";
 import { Favorites } from "../Favorites/Favorites";
 import { useAppStore } from "../../store/store";
 
 export const Header = () => {
-  const [isOpen, setIsOpen] = useState<boolean>(false);
+  // const [isOpen, setIsOpen] = useState<boolean>(false);
   const { favorites } = useAppStore();
   return (
     <>
@@ -20,10 +19,9 @@ export const Header = () => {
         </NavLink>
         <div className="flex gap-2 items-center">
           <Search />
-          <Button
-            intent="thirty"
-            onClick={() => setIsOpen(!isOpen)}
-            className="flex justify-between gap-1 md:gap-4 bg-white text-sky-500 rounded-md"
+          <NavLink
+            to="favorites"
+            className="px-1 py-2 flex justify-between gap-1 md:gap-4 bg-white text-sky-500 rounded-md"
           >
             <span className="flex gap-1">
               <svg
@@ -39,12 +37,12 @@ export const Header = () => {
             </span>
             <span className="block w-[1px] h-6 bg-gray-200"></span>
             <span className="m-0 md:mr-2 font-bold">{favorites.length}</span>
-          </Button>
+          </NavLink>
         </div>
       </div>
       <Favorites
-        isOpen={isOpen}
-        onOpenChange={(open) => setIsOpen(open)}
+      // isOpen={isOpen}
+      // onOpenChange={(open) => setIsOpen(open)}
       ></Favorites>
     </>
   );

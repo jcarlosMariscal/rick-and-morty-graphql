@@ -9,6 +9,7 @@ type AppState = {
   addFavorite: (character: ICharacter) => void;
   removeFavorite: (characterId: number) => void;
   handleSearchByName: (name: string) => void;
+  newOrder: (characters: ICharacter[]) => void;
 };
 
 export const useAppStore = create<AppState>()(
@@ -42,6 +43,18 @@ export const useAppStore = create<AppState>()(
             favorites: state.favorites.filter((fav) => fav.id !== characterId),
           };
         }),
+      // newOrder: (characters: ICharacter[]) =>
+      //   set((state) => {
+      //     console.log(state);
+      //     console.log(characters);
+
+      //     // toast.info("Se ha quitado a este personaje de favoritos.");
+      //     // return {
+      //     //   favorites: state.favorites.filter((fav) => fav.id !== characterId),
+      //     // };
+      //     return state;
+      //   }),
+      newOrder: (characters: ICharacter[]) => set({ favorites: characters }),
       handleSearchByName: (name: string) => set({ searchName: name }),
     }),
     { name: "ram-characters" }

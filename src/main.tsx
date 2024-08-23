@@ -9,7 +9,7 @@ import { CharacterPage } from "./pages/CharacterPage";
 
 const router = createBrowserRouter([
   {
-    path: "/",
+    path: "/:favorites?",
     element: <App></App>,
     children: [
       {
