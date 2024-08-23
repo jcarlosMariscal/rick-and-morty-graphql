@@ -14,7 +14,7 @@ export const Search = () => {
     <form className="w-full py-2">
       <input
         type="search"
-        className="bg-green-50 text-green-500 w-full p-2 rounded-lg outline-none border-none"
+        className="bg-white text-sky-500 w-full p-2 rounded-md outline-none border-none"
         placeholder="Buscar un personaje"
         onChange={(e) => setValue(e.target.value)}
       />

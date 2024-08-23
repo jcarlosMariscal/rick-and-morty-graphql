@@ -26,6 +26,7 @@ export interface ICharactersData {
   characters: {
     info: {
       pages: number;
+      count: number;
     };
     results: ICharacter[];
   };

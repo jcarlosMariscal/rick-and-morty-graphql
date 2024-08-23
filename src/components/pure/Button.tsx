@@ -6,7 +6,7 @@ const button = cva("button", {
     intent: {
       primary: ["text-sky-600"],
       secondary: ["text-yellow-600"],
-      thirty: ["text-white hover:text-sky-100"],
+      thirty: [" hover:text-sky-600"],
     },
     size: {
       xs: [
@@ -17,8 +17,8 @@ const button = cva("button", {
         "font-bold",
         "",
       ],
-      small: ["text-sm", "py-1", "px-2"],
-      medium: ["text-base", "py-2", "px-4"],
+      small: ["text-sm", "py-1", "px-1"],
+      medium: ["text-base", "py-2", "px-2"],
     },
   },
   compoundVariants: [{ intent: "primary", size: "medium", class: "uppercase" }],

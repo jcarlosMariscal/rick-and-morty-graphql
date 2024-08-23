@@ -1,6 +1,7 @@
 import { create } from "zustand";
 import { ICharacter } from "../types/types";
 import { toast } from "sonner";
+import { persist } from "zustand/middleware";
 
 type AppState = {
   favorites: ICharacter[];
@@ -10,32 +11,39 @@ type AppState = {
   handleSearchByName: (name: string) => void;
 };
 
-export const useAppStore = create<AppState>((set) => ({
-  favorites: [],
-  searchName: "",
-  addFavorite: (character: ICharacter) =>
-    set((state) => {
-      const isFavorite = state.favorites.some((fav) => fav.id === character.id);
+export const useAppStore = create<AppState>()(
+  persist(
+    (set) => ({
+      favorites: [],
+      searchName: "",
+      addFavorite: (character: ICharacter) =>
+        set((state) => {
+          const isFavorite = state.favorites.some(
+            (fav) => fav.id === character.id
+          );
 
-      if (isFavorite) {
-        toast.warning("Este personaje ya se encuentra en tus favoritos.");
-        return state;
-      }
+          if (isFavorite) {
+            toast.warning("Este personaje ya se encuentra en tus favoritos.");
+            return state;
+          }
 
-      if (state.favorites.length >= 5) {
-        toast.warning("El máximo es 5. Se reemplazará el más antiguo.");
-        return { favorites: [...state.favorites.slice(1), character] };
-      }
+          if (state.favorites.length >= 5) {
+            toast.warning("El máximo es 5. Se reemplazará el más antiguo.");
+            return { favorites: [...state.favorites.slice(1), character] };
+          }
 
-      toast.success("El personaje se ha agregado a favoritos.");
-      return { favorites: [...state.favorites, character] };
+          toast.success("El personaje se ha agregado a favoritos.");
+          return { favorites: [...state.favorites, character] };
+        }),
+      removeFavorite: (characterId: number) =>
+        set((state) => {
+          toast.info("Se ha quitado a este personaje de favoritos.");
+          return {
+            favorites: state.favorites.filter((fav) => fav.id !== characterId),
+          };
+        }),
+      handleSearchByName: (name: string) => set({ searchName: name }),
     }),
-  removeFavorite: (characterId: number) =>
-    set((state) => {
-      toast.info("Se ha quitado a este personaje de favoritos.");
-      return {
-        favorites: state.favorites.filter((fav) => fav.id !== characterId),
-      };
-    }),
-  handleSearchByName: (name: string) => set({ searchName: name }),
-}));
+    { name: "ram-characters" }
+  )
+);
